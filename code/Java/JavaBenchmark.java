@@ -58,16 +58,17 @@ e
         }
     }
 
-    public static int[][] ikjAlgorithm(ArrayList<ArrayList<Double>> A, ArrayList<ArrayList<Double>> B) {
+    public static int[][] dgemm_col(ArrayList<ArrayList<Double>> A, ArrayList<ArrayList<Double>> B) {
         int n = A.size();
 
         // initialise C
         int[][] C = new int[n][n];
 
-        for (int i = 0; i < n; i++) {
-            for (int k = 0; k < n; k++) {
-                for (int j = 0; j < n; j++) {
-                    C[i][j] += A.get(i).get(k) * B.get(k).get(j);
+        for (int k = 0; k < n; k++) {
+            for (int j = 0; j < n; j++) {
+                Double tmp = B.get(k).get(j);
+                for (int i = 0; i < n; i++) {
+                    C[i][j] += A.get(i).get(k) * tmp;
                 }
             }
         }
@@ -78,7 +79,7 @@ e
 
         readMatrixInputFile();
 
-        int[][] C = ikjAlgorithm(A, B);
+        int[][] C = dgemm_col(A, B);
 
         System.out.println("Hello, Java Benchmark world!");
     }
