@@ -1,0 +1,1 @@
+java -cp ./benchmark_col.jar JavaBenchmark
