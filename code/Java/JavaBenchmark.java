@@ -19,8 +19,8 @@ import java.util.Vector;
  */
 public class JavaBenchmark {
     static File matrixInputFile = new File("100.in");
-    static ArrayList<ArrayList<Integer>> A = new ArrayList<ArrayList<Integer>>();
-    static ArrayList<ArrayList<Integer>> B = new ArrayList<ArrayList<Integer>>();
+    static ArrayList<ArrayList<Double>> A = new ArrayList<ArrayList<Double>>();
+    static ArrayList<ArrayList<Double>> B = new ArrayList<ArrayList<Double>>();
 
     public static void readMatrixInputFile() {
         String thisLine;
@@ -33,10 +33,10 @@ public class JavaBenchmark {
                 if (thisLine.trim().equals("")) {
                     break;
                 } else {
-                    ArrayList<Integer> line = new ArrayList<Integer>();
+                    ArrayList<Double> line = new ArrayList<Double>();
                     String[] lineArray = thisLine.split("\t");
                     for (String number : lineArray) {
-                        line.add(Integer.parseInt(number));
+                        line.add(Double.parseDouble(number));
                     }
                     A.add(line);
                 }
@@ -44,21 +44,21 @@ public class JavaBenchmark {
 
             // Begin reading B
             while ((thisLine = br.readLine()) != null) {
-                ArrayList<Integer> line = new ArrayList<Integer>();
+                ArrayList<Double> line = new ArrayList<Double>();
                 String[] lineArray = thisLine.split("\t");
                 for (String number : lineArray) {
-                    line.add(Integer.parseInt(number));
+                    line.add(Double.parseDouble(number));
                 }
                 B.add(line);
             }
-
+e
             br.close();
         } catch (IOException e) {
             System.err.println("Error: " + e);
         }
     }
 
-    public static int[][] ikjAlgorithm(ArrayList<ArrayList<Integer>> A, ArrayList<ArrayList<Integer>> B) {
+    public static int[][] ikjAlgorithm(ArrayList<ArrayList<Double>> A, ArrayList<ArrayList<Double>> B) {
         int n = A.size();
 
         // initialise C
