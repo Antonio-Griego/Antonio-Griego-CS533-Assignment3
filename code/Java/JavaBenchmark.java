@@ -1,13 +1,7 @@
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
-import java.io.FileNotFoundException;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.ArrayList;
-import java.util.Vector;
+import java.util.Random;
 
 /**
  * This class implements a Java based benchmarking program based off
@@ -18,51 +12,34 @@ import java.util.Vector;
  * @author Antonio Griego
  */
 public class JavaBenchmark {
-    static File matrixInputFile = new File("100.in");
+    static Random rng = new Random();
     static ArrayList<ArrayList<Double>> A = new ArrayList<ArrayList<Double>>();
     static ArrayList<ArrayList<Double>> B = new ArrayList<ArrayList<Double>>();
 
-    public static void readMatrixInputFile() {
-        String thisLine;
+    public static void fill() {
+        //return min + (max - min) * rng.nextDouble();
 
-        try {
-            BufferedReader br = new BufferedReader(new FileReader(matrixInputFile));
+        int n = A.size();
+        Double max = 1.0;
+        Double min = -1.0;
 
-            // Begin reading A
-            while ((thisLine = br.readLine()) != null) {
-                if (thisLine.trim().equals("")) {
-                    break;
-                } else {
-                    ArrayList<Double> line = new ArrayList<Double>();
-                    String[] lineArray = thisLine.split("\t");
-                    for (String number : lineArray) {
-                        line.add(Double.parseDouble(number));
-                    }
-                    A.add(line);
-                }
+        for (int k = 0; k < n; k++) {
+            for (int j = 0; j < n; j++) {
+                // Uniformly distributed over [-1, 1]
+                A.get(j).set(k, (max - min) * rng.nextDouble());
+                B.get(j).set(k, (max - min) * rng.nextDouble());
             }
-
-            // Begin reading B
-            while ((thisLine = br.readLine()) != null) {
-                ArrayList<Double> line = new ArrayList<Double>();
-                String[] lineArray = thisLine.split("\t");
-                for (String number : lineArray) {
-                    line.add(Double.parseDouble(number));
-                }
-                B.add(line);
-            }
-e
-            br.close();
-        } catch (IOException e) {
-            System.err.println("Error: " + e);
         }
     }
 
-    public static int[][] dgemm_col(ArrayList<ArrayList<Double>> A, ArrayList<ArrayList<Double>> B) {
+    /**
+     * This function implements DGEMM with loop indicies ordered for column major.
+     */
+    public static Double[][] dgemm_col(ArrayList<ArrayList<Double>> A, ArrayList<ArrayList<Double>> B) {
         int n = A.size();
 
         // initialise C
-        int[][] C = new int[n][n];
+        Double[][] C = new Double[n][n];
 
         for (int k = 0; k < n; k++) {
             for (int j = 0; j < n; j++) {
@@ -72,15 +49,35 @@ e
                 }
             }
         }
+
         return C;
     }
 
+    /**
+     * The benchmarking program which measures the speed in seconds of a
+     * matrix multiplication of two 100 x 100 matrices and appends the output
+     * to a file. It is intended that this program is run dozens, hundreds, or
+     * thousands of times to produce a data set.
+     */
     public static void main(String[] args) {
+        fill();
+        Double[][] C;
 
-        readMatrixInputFile();
+        // warm-up
+        C = dgemm_col(A, B);
 
-        int[][] C = dgemm_col(A, B);
+        // test matrix multiplication
+        Double seconds = (double)System.nanoTime();
+        C = dgemm_col(A, B);
+        seconds = (System.nanoTime() - seconds) / 10_000.0;
 
-        System.out.println("Hello, Java Benchmark world!");
+        try {
+            BufferedWriter out;
+            out = new BufferedWriter(new FileWriter("results_java.out", true));
+            out.write(seconds.toString() + ",\n");
+            out.close();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
     }
 }
