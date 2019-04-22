@@ -1,2 +1,6 @@
 code/C/results_c.out
+code/C/benchmark_col
+code/C/benchmark.o
 code/Java/results_java.out
+code/Java/benchmark_col.jar
+code/Java/JavaBenchmark.class
