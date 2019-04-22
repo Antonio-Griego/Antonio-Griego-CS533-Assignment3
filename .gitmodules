@@ -1,6 +1,6 @@
-[submodule "CS533_Assignment3_Matmult"]
-	path = CS533_Assignment3_Matmult
+[submodule "submodules/CS533_Assignment3_Matmult"]
+	path = submodules/CS533_Assignment3_Matmult
 	url = https://github.com/gmfricke/CS533_Assignment3_Matmult.git
-[submodule "matrix-multiplication"]
-	path = matrix-multiplication
+[submodule "submodules/matrix-multiplication"]
+	path = submodules/matrix-multiplication
 	url = https://github.com/MartinThoma/matrix-multiplication.git
