@@ -15,11 +15,11 @@ And to also include my Latex report and all associated files from:
 
 The code bases serve as starting points and source material for code that I will write and/or adapt.
 
-When downloading and running code from this repository, it will be necessary to run the command
+When downloading code from this repository, it will be necessary to run the command
 ```
 git submodule init
 ```
-in order to initialize and download the code from these submodules.
+in order to initialize and download the code from the submodules.
 
 Please NOTE that these submodules are not intended to be compiled and run individually. They are included for reference and documentation only.
 
