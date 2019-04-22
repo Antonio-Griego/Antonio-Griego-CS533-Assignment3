@@ -15,7 +15,7 @@ all : $(targets)
 
 objects : $(objects)
 
-benchmark_% : benchmark.o dgemm_%.o
+benchmark_% : benchmark.o
 	$(CC) $(OPT) -o $@ $^ $(LDLIBS)
 
 %.o : %.c
