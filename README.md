@@ -9,7 +9,11 @@ This repository makes use of Git sub modules to include code from two repositori
 - https://github.com/MartinThoma/matrix-multiplication.git
 - https://github.com/gmfricke/CS533_Assignment3_Matmult.git
 
-These code bases serve as starting points and source material for code that I will write and/or adapt.
+And to also include my Latex report and all associated files from:
+
+- https://github.com/Antonio-Griego/Antonio-Griego-CS533-Assignment3-LATEX.git
+
+The code bases serve as starting points and source material for code that I will write and/or adapt.
 
 When downloading and running code from this repository, it will be necessary to run the command
 ```
@@ -25,7 +29,16 @@ The code I will be running will be in the code subfolder in this repository. It 
 
 ### C
 
+I have placed all of my benchmarking code for C in the code/C directory. You can use the included Makefile to compile the code with the command:
+```
+$ make
+```
+while in the C directory.
 
+To run the benchmark, simple run the generated executable file:
+```
+$ ./benchmark_col
+```
 
 ### Java
 
