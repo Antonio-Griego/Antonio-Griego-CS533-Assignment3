@@ -74,11 +74,6 @@ public class JavaBenchmark {
         return C;
     }
 
-    /**
-     * usage: args[0] = filename of input file where the file is a space
-     *                  separated definition of two matrices; see the file
-     *                  "2.in" for an example
-     */
     public static void main(String[] args) {
 
         readMatrixInputFile();
