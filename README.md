@@ -27,6 +27,10 @@ Please NOTE that these submodules are not intended to be compiled and run indivi
 
 The code I will be running will be in the code subfolder in this repository. It will contain benchmarking code written for C and Java and will be the code used to produce my experimental data.
 
+My benchmarking programs are super simple, they time a single multiplication of a 100 x 100 matrix. The intent is to run these programs many, many times to produce a data sample of run times.
+
+The C benchmark creates and/or appends to "results_c.out" and the Java benchmark creates and/or appends to "results_java.out" within the code directories where they will be run.
+
 ### C
 
 I have placed all of my benchmarking code for C in the code/C directory. You can use the included Makefile to compile the code with the command:
@@ -44,7 +48,7 @@ $ ./benchmark_col
 
 I have placed all of my benchmarking code for Java in the code/Java directory. I have included a build_script.sh file to compile my code which you can run via the command line:
 ```
-$ ./build_script.sh
+$ bash ./build.sh
 ```
 
 To run the benchmark, simply run the generated Jar:
@@ -53,7 +57,12 @@ $ java -cp ./JavaBenchmark.jar JavaBenchmark
 ```
 or run the included convenience script:
 ```
-$ ./run_script.sh
+$ bash ./run.sh
+```
+
+If you want to clean out the previously compiled files:
+```
+$ bash ./clean.sh
 ```
 
 If you are running these scripts on a Mac you may need to use the "bash" command before the script. If you are on Ubuntu make sure you give executable permission to the necessary files or folders with "chmod +x".
