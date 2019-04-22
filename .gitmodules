@@ -4,3 +4,6 @@
 [submodule "submodules/matrix-multiplication"]
 	path = submodules/matrix-multiplication
 	url = https://github.com/MartinThoma/matrix-multiplication.git
+[submodule "latex"]
+	path = latex
+	url = https://github.com/Antonio-Griego/Antonio-Griego-CS533-Assignment3-LATEX.git
